@@ -445,6 +445,7 @@ func (h *postHeap) siftUp(j int) {
 			break
 		}
 		ch[i], ch[j] = ch[j], ch[i]
+		j = i
 	}
 }
 
@@ -598,13 +599,10 @@ func validUTF8(c1, c2 uint32) bool {
 // 24 bits to sort.  Run two rounds of 12-bit radix sort.
 const sortK = 12
 
-var sortTmp []postEntry
-var sortN [1 << sortK]int
-
 func sortPost(post []postEntry) {
-	if len(post) > len(sortTmp) {
-		sortTmp = make([]postEntry, len(post))
-	}
+	var sortN [1 << sortK]int
+
+	sortTmp := make([]postEntry, len(post))
 	tmp := sortTmp[:len(post)]
 
 	const k = sortK
