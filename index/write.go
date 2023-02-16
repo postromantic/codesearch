@@ -92,7 +92,7 @@ func makePostEntry(trigram, fileid uint32) postEntry {
 // or if it contains more than maxTextTrigrams distinct trigrams.
 const (
 	maxFileLen      = 1 << 30
-	maxLineLen      = 2000
+	maxLineLen      = 3000
 	maxTextTrigrams = 20000
 )
 
